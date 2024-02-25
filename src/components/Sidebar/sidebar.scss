@@ -1,0 +1,191 @@
+$main-bg-lt: #e2e8f0;
+$text-color-lt-active: #0000b2;
+$bg-lt-active: #f0f2ff;
+$bg-lt-hover: #f1f5f9;
+$duration: 0.7s;
+
+.sidebar {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  margin: 40px 80px;
+  padding: 16px 8px 0;
+  width: 64px;
+
+  background-color: white;
+  border: 2px solid $main-bg-lt;
+  border-radius: 12px;
+  box-shadow: 0px 0px 0px 2px white;
+
+  transform: translateX(70px);
+  transition: $duration;
+
+  &__dots {
+    display: flex;
+    column-gap: 6px;
+    width: 100%;
+
+    div {
+      width: 9px;
+      height: 9px;
+      border-radius: 100%;
+    }
+
+    .red-dot {
+      background-color: #EC6A5E;
+    }
+
+    .yellow-dot {
+      background-color: #F5BF4F;
+    }
+
+    .green-dot {
+      background-color: #61C554;
+    }
+  }
+
+  &__logo {
+    display: flex;
+    align-items: center;
+    column-gap: 6px;
+    margin-top: 24px;
+    width: 100%;
+    overflow: hidden;
+    cursor: default;
+
+    >img {
+      margin-left: 8px;
+      width: 28px;
+    }
+
+    >span {
+      font-weight: 700;
+      color: $text-color-lt-active;
+    }
+
+    >button {
+      position: absolute;
+      right: -13px;
+      width: 24px;
+      height: 24px;
+      background-color: $main-bg-lt;
+      border-radius: 100%;
+      border: none;
+      cursor: pointer;
+    }
+  }
+
+  &__main-nav,
+  &__support-nav {
+    margin-top: 16px;
+    width: 100%;
+
+    >div {
+      display: flex;
+      align-items: center;
+      column-gap: 16px;
+      margin: 8px 0;
+      padding-left: 14px;
+      height: 44px;
+      border-radius: 12px;
+      font-size: 14px;
+      overflow: hidden;
+
+      &:hover {
+        background-color: $bg-lt-hover;
+        color: #213046;
+        cursor: pointer;
+      }
+    }
+
+    svg,
+    span {
+      font-weight: 600;
+      pointer-events: none;
+    }
+  }
+
+  &__support-nav {
+    margin-top: 164px;
+    width: 100%;
+
+    >div {
+      margin: 8px 0;
+    }
+  }
+}
+
+// block for animation
+.opened {
+  width: 195px;
+  transform: translateX(0%);
+  animation: toOpenSlider $duration;
+}
+
+.btn_closed {
+  animation: toCloseBtn $duration forwards;
+}
+
+.btn_opened {
+  animation: toOpenBtn $duration;
+}
+
+.nav_active {
+  background-color: #f0f2ff;
+  color: $text-color-lt-active;
+}
+
+.disappear {
+  animation: textDisappear 0.5s forwards;
+}
+
+.appear {
+  animation: textAppear 0.5s;
+}
+
+@keyframes toOpenSlider {
+  from {
+    width: 64px;
+  }
+
+  to {
+    width: 195px;
+  }
+}
+
+@keyframes toCloseBtn {
+  100% {
+    right: -36px;
+    background-color: white;
+  }
+}
+
+@keyframes toOpenBtn {
+  0% {
+    right: -36px;
+    background-color: white;
+  }
+
+  100% {
+    right: -13px;
+  }
+}
+
+@keyframes textDisappear {
+  100% {
+    transform: translateX(40px);
+    opacity: 0;
+  }
+}
+
+@keyframes textAppear {
+  0% {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
